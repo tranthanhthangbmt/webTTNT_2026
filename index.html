@@ -42,7 +42,8 @@
       grid-auto-flow: column;
       overflow-x: auto !important;
       -webkit-overflow-scrolling: touch;
-      margin-bottom: 20px;
+      margin-top: 0 !important; /* Reduce space above tabs */
+      margin-bottom: 5px !important; /* Reduce space below tabs */
       border-bottom: none !important;
       scrollbar-width: none;
       /* Hide scrollbar Firefox */
@@ -71,7 +72,7 @@
       color: #555 !important;
       background: #fff !important;
       cursor: pointer;
-      margin: 0 8px 10px 0 !important;
+      margin: 0 8px 5px 0 !important; /* Reduce bottom margin on tabs */
     }
 
     .docsify-tabs__tab:hover {
@@ -97,7 +98,7 @@
       left: 0 !important;
       order: 99 !important;
       /* Keep content below tabs */
-      padding-top: 15px;
+      padding-top: 5px; /* Reduce space between tabs and content */
     }
 
     /* ============================================= */
@@ -138,14 +139,19 @@
 
       .markdown-section h1 {
         font-size: 1.8rem;
+        margin-bottom: 0.5rem; /* Reduce space under H1 */
       }
 
       .markdown-section h2 {
         font-size: 1.4rem;
       }
 
+      .docsify-tabs {
+        margin-top: 0 !important;
+      }
+
       .docsify-tabs__content {
-        padding: 10px 0 0 0 !important;
+        padding: 0 !important; /* Remove all top padding on mobile */
       }
 
       .pdf-container {
