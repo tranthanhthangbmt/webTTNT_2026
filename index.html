@@ -34,44 +34,48 @@
     }
 
     /* ===== DOCSIFY TABS: MOBILE OPTIMIZATION ===== */
-    /* Ensure tabs are horizontally scrollable on mobile instead of wrapping */
+    /* Docsify-tabs uses flex-wrap to separate tabs from content. We must preserve it! */
     .docsify-tabs {
       display: flex !important;
-      flex-wrap: nowrap !important;
-      overflow-x: auto !important;
-      -webkit-overflow-scrolling: touch;
-      border-bottom: 2px solid var(--docsifytabs-border-color);
+      flex-wrap: wrap !important;
+      gap: 8px;
       margin-bottom: 20px;
-      scrollbar-width: none; /* Hide scrollbar Firefox */
-    }
-    
-    .docsify-tabs::-webkit-scrollbar {
-      display: none; /* Hide scrollbar Chrome/Safari/Edge */
+      border-bottom: none !important;
     }
 
+    /* Style tabs as modern "pills" so they look great even when wrapping on mobile */
     .docsify-tabs__tab {
+      flex: 1 1 auto;
+      text-align: center;
       padding: 10px 16px !important;
-      font-size: 15px !important;
-      white-space: nowrap !important; /* Prevent text wrapping inside tab */
+      font-size: 14px !important;
+      font-weight: 500 !important;
       transition: all 0.2s ease-in-out !important;
-      border: none !important;
-      border-bottom: 2px solid transparent !important;
-      margin-bottom: -2px !important;
+      border: 1px solid var(--docsifytabs-border-color) !important;
+      border-radius: 20px !important; /* Pill shape */
       color: #555 !important;
-      background: transparent !important;
+      background: #fff !important;
       cursor: pointer;
+      margin: 0 !important;
     }
 
     .docsify-tabs__tab:hover {
-      color: var(--theme-color) !important;
       background-color: #f8faff !important;
-      border-radius: 6px 6px 0 0;
+      border-color: var(--theme-color) !important;
+      color: var(--theme-color) !important;
     }
 
     .docsify-tabs__tab--active {
-      color: var(--theme-color) !important;
-      border-bottom: 2px solid var(--theme-color) !important;
-      font-weight: 600 !important;
+      color: #fff !important;
+      background-color: var(--theme-color) !important;
+      border-color: var(--theme-color) !important;
+      box-shadow: 0 4px 6px rgba(26, 115, 232, 0.2);
+    }
+    
+    .docsify-tabs__content {
+      width: 100% !important;
+      order: 99 !important; /* Keep content below tabs */
+      padding-top: 15px;
     }
     /* ============================================= */
 
