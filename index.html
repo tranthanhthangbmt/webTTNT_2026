@@ -34,18 +34,24 @@
     }
 
     /* ===== DOCSIFY TABS: MOBILE OPTIMIZATION ===== */
-    /* Docsify-tabs uses flex-wrap to separate tabs from content. We must preserve it! */
+    /* Use display: block with overflow to create a swipeable tab bar without breaking content */
     .docsify-tabs {
-      display: flex !important;
-      flex-wrap: wrap !important;
-      gap: 8px;
+      display: block !important;
+      white-space: nowrap !important;
+      overflow-x: auto !important;
+      -webkit-overflow-scrolling: touch;
       margin-bottom: 20px;
       border-bottom: none !important;
+      scrollbar-width: none; /* Hide scrollbar Firefox */
+    }
+    
+    .docsify-tabs::-webkit-scrollbar {
+      display: none; /* Hide scrollbar Chrome/Safari/Edge */
     }
 
-    /* Style tabs as modern "pills" so they look great even when wrapping on mobile */
+    /* Style tabs as modern "pills" */
     .docsify-tabs__tab {
-      flex: 1 1 auto;
+      display: inline-block !important;
       text-align: center;
       padding: 10px 16px !important;
       font-size: 14px !important;
@@ -56,7 +62,7 @@
       color: #555 !important;
       background: #fff !important;
       cursor: pointer;
-      margin: 0 !important;
+      margin: 0 8px 10px 0 !important;
     }
 
     .docsify-tabs__tab:hover {
@@ -73,8 +79,11 @@
     }
     
     .docsify-tabs__content {
+      display: block !important;
+      white-space: normal !important; /* Allow text to wrap */
+      position: sticky !important;
+      left: 0 !important;
       width: 100% !important;
-      order: 99 !important; /* Keep content below tabs */
       padding-top: 15px;
     }
     /* ============================================= */
