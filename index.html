@@ -107,11 +107,24 @@
       overflow-y: hidden !important;
     }
 
-    /* Mobile specific text scaling */
+    /* Mobile specific text scaling and iframe optimization */
     @media (max-width: 600px) {
-      .markdown-section h1 { font-size: 2rem; }
-      .markdown-section h2 { font-size: 1.5rem; }
-      .docsify-tabs__tab { font-size: 14px !important; padding: 8px 12px !important; }
+      .markdown-section {
+        padding: 10px 5px !important;
+      }
+      .markdown-section h1 { font-size: 1.8rem; }
+      .markdown-section h2 { font-size: 1.4rem; }
+      
+      .docsify-tabs__content {
+        padding: 10px 0 0 0 !important;
+      }
+      
+      .pdf-container {
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        height: 85vh !important;
+      }
     }
   </style>
 </head>
