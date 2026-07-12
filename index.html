@@ -34,31 +34,28 @@
     }
 
     /* ===== DOCSIFY TABS: MOBILE OPTIMIZATION ===== */
-    /* Docsify-tabs wrapper to allow horizontal swipe */
+    /* Docsify-tabs grid layout to allow horizontal swipe without breaking DOM */
     .docsify-tabs {
-      display: flex !important;
-      flex-wrap: wrap !important;
+      display: grid !important;
+      grid-auto-columns: max-content;
+      grid-auto-flow: column;
+      overflow-x: auto !important;
+      -webkit-overflow-scrolling: touch;
       margin-bottom: 20px;
       border-bottom: none !important;
+      scrollbar-width: none; /* Hide scrollbar Firefox */
+      container-type: inline-size;
+      justify-content: start;
     }
     
-    .tabs-nav-wrap {
-      display: flex;
-      width: 100%;
-      overflow-x: auto;
-      white-space: nowrap;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none; /* Hide scrollbar Firefox */
-      order: 1; /* Keep tabs at the top */
-    }
-
-    .tabs-nav-wrap::-webkit-scrollbar {
+    .docsify-tabs::-webkit-scrollbar {
       display: none; /* Hide scrollbar Chrome/Safari/Edge */
     }
 
     /* Style tabs as modern "pills" */
     .docsify-tabs__tab {
-      flex: 0 0 auto !important; /* Don't shrink or wrap */
+      grid-row: 1 !important;
+      order: 1 !important; /* Ensure tabs are placed before content in auto-flow */
       text-align: center;
       padding: 10px 16px !important;
       font-size: 14px !important;
@@ -86,7 +83,11 @@
     }
     
     .docsify-tabs__content {
-      width: 100% !important;
+      grid-row: 2 !important;
+      grid-column: 1 / 999 !important; /* Span across tab columns */
+      width: 100cqw !important; /* Exact visible width of container */
+      position: sticky !important;
+      left: 0 !important;
       order: 99 !important; /* Keep content below tabs */
       padding-top: 15px;
     }
@@ -164,25 +165,7 @@
         theme: 'classic',
         tabComments: true,
         tabHeadings: true
-      },
-      plugins: [
-        function(hook, vm) {
-          hook.doneEach(function() {
-            var containers = document.querySelectorAll('.docsify-tabs');
-            containers.forEach(function(container) {
-              if (container.querySelector('.tabs-nav-wrap')) return;
-              var tabs = container.querySelectorAll('.docsify-tabs__tab');
-              if (tabs.length === 0) return;
-              var wrap = document.createElement('div');
-              wrap.className = 'tabs-nav-wrap';
-              container.insertBefore(wrap, container.firstChild);
-              tabs.forEach(function(tab) {
-                wrap.appendChild(tab);
-              });
-            });
-          });
-        }
-      ]
+      }
     }
   </script>
 
